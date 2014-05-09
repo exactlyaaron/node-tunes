@@ -1,0 +1,13 @@
+extends ../shared/template
+
+block content
+  h1 Node-Tunes Artists
+
+  form(method='POST', action='/artists' enctype='multipart/form-data')
+    input(type='text', name='name', placeholder='Name')
+    input(type='file', name='artistPhoto')
+    button Add Artist
+
+  each artist in artists
+    h3= artist.name
+    img(src='/img/#{artist.name}/#{artist.photo.originalFilename}')

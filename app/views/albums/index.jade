@@ -1,0 +1,22 @@
+extends ../shared/template
+
+block content
+  h1 Node-Tunes Albums
+
+  form(method='POST', action='/albums' enctype='multipart/form-data')
+    input(type='text', name='name', placeholder='Name')
+    select(name='artistId')
+      Artist
+        each artist in artists
+          option(value=artist._id)= artist.name
+    input(type='file', name='albumPhoto')
+    button Add Album
+
+  each album in albums
+    h3= album.name
+    img(src='/img/#{album.name}/#{album.photo.originalFilename}')
+
+select.priority(name='priorityId')
+          option Priority
+          each priority in priorities
+            option(value=priority._id)= priority.name
