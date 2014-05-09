@@ -1,0 +1,18 @@
+extends ../shared/template
+
+block content
+  h1 Albums
+
+  form(method='POST', action='/albums', enctype='multipart/form-data')
+    input(type='text', name='name', placeholder='Name')
+    //- select(name='artistId')
+    //-   option Artist
+    //-     each artist in artists
+    //-       option(value=artist._id)= artist.name
+    input(type='file', name='albumPhoto')
+    button Add Album
+
+  each album in albums
+    .albumDiv
+      h2= album.name
+      img(src='/img/#{album.name}/#{album.photo.originalFilename}')

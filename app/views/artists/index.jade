@@ -1,0 +1,14 @@
+extends ../shared/template
+
+block content
+  h1 Artists
+
+    form(method='POST', action='/artists', enctype='multipart/form-data')
+      input(type='text', name='name', placeholder='Name')
+      input(type='file', name='artistPhoto')
+      button Add
+
+    each artist in artists
+      .artistDiv
+        h2= artist.name
+        img(src='/img/#{artist.name}/#{artist.photo.originalFilename}')
