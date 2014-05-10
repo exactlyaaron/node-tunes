@@ -1,0 +1,7 @@
+extends ../shared/template
+
+block content
+  h1= artist[0].name
+  h2 ALBUMS:
+  each album in albums
+    h3= album.name

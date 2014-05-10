@@ -1,0 +1,17 @@
+extends ../shared/template
+
+block content
+  form(method='POST', action='/songs', enctype='multipart/form-data')
+    input(type='text', name='name', placeholder='Song Name')
+    select(name='albumId')
+      each album in albums
+        option(value=album._id) #{album.name} (#{album.artist.name})
+    //- input(type='file', name='songFile')
+    button Add Song
+
+  h1 NodeTunes SONGS
+
+  each song in songs
+    h2= song.name
+    p Album: #{song.album.name}
+    p Artist: #{song.album.artist.name}
