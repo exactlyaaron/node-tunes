@@ -14,8 +14,9 @@ block content
 
   #albums
     each album in albums
-      img(src='/img/#{album.name}/#{album.photo.originalFilename}')
-      .album-info
-        h3= album.name
-        p= album.artist.name
+      a(href='/albums/#{album._id}')
+        img(src='/img/#{album.name}/#{album.photo.originalFilename}')
+        .album-info
+          h3= album.name
+          p= album.artist.name
       .clear

@@ -1,0 +1,10 @@
+extends ../shared/template
+
+block content
+
+  h1= albums[0].name
+
+  #songs
+    each song in songs
+      h4= song.name
+      .clear

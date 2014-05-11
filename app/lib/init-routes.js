@@ -28,6 +28,7 @@ function load(app, fn){
 
   app.get('/albums', dbg, albums.index);
   app.post('/albums', dbg, albums.create);
+  app.get('/albums/:id', dbg, albums.show);
 
   app.get('/songs', dbg, songs.index);
   app.post('/songs', dbg, songs.create);

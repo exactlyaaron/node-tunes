@@ -21,44 +21,20 @@ exports.index = (req, res)=>{
 exports.show = (req, res)=>{
   var _id = Mongo.ObjectID(req.params.id);
 
-  artists.find({_id:_id}).toArray((err, artst)=>{
-
+  artists.find({_id:_id}).toArray((err, artsts)=>{
       albums.find().toArray((e, albms)=>{
 
-        // albums = _(albms).find(a=>{
-        //
-        //   return true;
-        //   //return a.artistId.toString() === artst[0]._id.toString();
+        // albms = albms.map(albm => {
+        //   return albm.artistId.toString() === artsts[0]._id.toString();
         // });
 
-        albms = albms.map(album => {
-
-          var al = _(album).find(a => {
-            console.log('MAPPED ALBUM ------------');
-            console.log(a);
-            // console.log(artst[0]._id);
-            // console.log(a.artistId);
-            return true;
-
-            //return a._id.toString() === album.artistId.toString();
-          });
+        var albs = _.filter(albms, function(albm) { return albm.artistId.toString() === artsts[0]._id.toString(); });
 
 
-          //return _(albms).find(a=>a.artistId.toString() === artst[0]._id.toString());
-        });
+        console.log(albs);
 
-      res.render('artists/show', {albums: albums, artist: artst, title: 'NodeTunes: Artist Profile'});
+      res.render('artists/show', {albums: albs, artist: artsts, title: 'NodeTunes: Artist Profile'});
     });
-
-
-      // albums.find().toArray((e, albms)=>{
-      // //   //
-      //     albms = albms.map(album => {
-      //       // album.artist = _(artsts).find(a => {
-      //       //   return a._id.toString() === album.artistId.toString();
-      //       // });
-      //       return album;
-      //     });
   });
 
   // artists.find({_id:_id}, (err, artst)=>{

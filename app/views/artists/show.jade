@@ -2,6 +2,13 @@ extends ../shared/template
 
 block content
   h1= artist[0].name
+  img(src='/img/#{artist[0].name}/#{artist[0].photo.originalFilename}')
+  .clear
+  br
+
   h2 ALBUMS:
-  //- each album in albums
-  //-   h3= album.name
+  each album in albums
+    a(href='/albums/#{album._id}')
+      h3= album.name
+      img(src='/img/#{album.name}/#{album.photo.originalFilename}')
+    .clear

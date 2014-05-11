@@ -8,6 +8,7 @@ var Mongo = require('mongodb');
 
 var albums = global.nss.db.collection('albums');
 var artists = global.nss.db.collection('artists');
+var songs = global.nss.db.collection('songs');
 
 // exports.index = (req, res)=>{
 //   albums.find().toArray((err, records)=>{
@@ -40,6 +41,27 @@ exports.index = (req, res)=>{
     });
   });
 };
+
+
+
+exports.show = (req, res)=>{
+  var _id = Mongo.ObjectID(req.params.id);
+
+  albums.find({_id:_id}).toArray((err, albms)=>{
+      songs.find().toArray((e, sngs)=>{
+        var snglist = _.filter(sngs, function(sng) { return sng.albumId.toString() === albms[0]._id.toString(); });
+        console.log(snglist);
+
+      res.render('albums/show', {songs: snglist, albums: albms, title: 'NodeTunes: Album Detail'});
+    });
+  });
+};
+
+
+
+
+
+
 
 
     // if(!fs.existsSync(`${__dirname}/../static/img/album`)) {
