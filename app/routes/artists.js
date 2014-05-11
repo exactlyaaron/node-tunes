@@ -24,11 +24,31 @@ exports.show = (req, res)=>{
   artists.find({_id:_id}).toArray((err, artst)=>{
 
       albums.find().toArray((e, albms)=>{
+
+        // albums = _(albms).find(a=>{
+        //
+        //   return true;
+        //   //return a.artistId.toString() === artst[0]._id.toString();
+        // });
+
         albms = albms.map(album => {
-          return _(albms).find(a=>a.artistId.toString() === artst[0]._id.toString());
+
+          var al = _(album).find(a => {
+            console.log('MAPPED ALBUM ------------');
+            console.log(a);
+            // console.log(artst[0]._id);
+            // console.log(a.artistId);
+            return true;
+
+            //return a._id.toString() === album.artistId.toString();
+          });
+
+
+          //return _(albms).find(a=>a.artistId.toString() === artst[0]._id.toString());
         });
-        console.log(albums);
-      });
+
+      res.render('artists/show', {albums: albums, artist: artst, title: 'NodeTunes: Artist Profile'});
+    });
 
 
       // albums.find().toArray((e, albms)=>{
@@ -39,9 +59,6 @@ exports.show = (req, res)=>{
       //       // });
       //       return album;
       //     });
-
-    console.log(albums);
-    res.render('artists/show', {albums: albums, artist: artst, title: 'NodeTunes: Artist Profile'});
   });
 
   // artists.find({_id:_id}, (err, artst)=>{
