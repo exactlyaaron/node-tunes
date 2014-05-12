@@ -36,6 +36,9 @@ exports.index = (req, res)=>{
             return s;
           });
 
+          allGenres = _.uniq(allGenres);
+          
+
           res.render('songs/index', {genres: allGenres, artists: artsts, albums: albms, songs: sngs, title: 'Songs'});
         });
       });
