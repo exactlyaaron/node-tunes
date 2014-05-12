@@ -7,4 +7,5 @@ block content
   #songs
     each song in songs
       h4= song.name
+      audio(src='#{song.file}', controls=true)
       .clear

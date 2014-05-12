@@ -102,3 +102,24 @@ exports.create = (req, res)=>{
     });
   });
 };
+
+
+
+
+
+exports.destroy = (req, res)=>{
+  var rimraf = require('rimraf');
+  var _id = Mongo.ObjectID(req.params.id);
+
+  albums.find({_id:_id}).toArray((err, albms)=>{
+    console.log(albms);
+    var imgPath = `${__dirname}/../static/img/${albms[0].name}`;
+    rimraf.sync(imgPath);
+
+    var audioPath = `${__dirname}/../static/audios/${albms[0]._id}`;
+    rimraf.sync(audioPath);
+  });
+
+  albums.findAndRemove({_id: _id}, ()=>res.redirect('/albums'));
+
+};

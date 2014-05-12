@@ -24,13 +24,7 @@ exports.show = (req, res)=>{
   artists.find({_id:_id}).toArray((err, artsts)=>{
       albums.find().toArray((e, albms)=>{
 
-        // albms = albms.map(albm => {
-        //   return albm.artistId.toString() === artsts[0]._id.toString();
-        // });
-
         var albs = _.filter(albms, function(albm) { return albm.artistId.toString() === artsts[0]._id.toString(); });
-
-
         console.log(albs);
 
       res.render('artists/show', {albums: albs, artist: artsts, title: 'NodeTunes: Artist Profile'});

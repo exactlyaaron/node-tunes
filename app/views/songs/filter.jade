@@ -1,0 +1,13 @@
+extends ../shared/template
+
+block content
+
+
+  h1 NodeTunes SONGS FILTERED
+  h2= genre
+
+  each song in songs
+    h2= song.name
+    audio(src='#{song.file}', controls=true)
+    p Album: #{song.album.name}
+    p Artist: #{song.album.artist.name}

@@ -6,12 +6,25 @@ block content
     select(name='albumId')
       each album in albums
         option(value=album._id) #{album.name} (#{album.artist.name})
-    //- input(type='file', name='songFile')
+    .clear
+    input(type='file', name='file')
+    .clear
+    input(type='text', name='genres', placeholder='Genres')
     button Add Song
 
   h1 NodeTunes SONGS
 
+  h1 GENRES
+  each genre in genres
+    a(href='/songs/filter/#{genre}')
+      p= genre
+
   each song in songs
     h2= song.name
+    audio(src='#{song.file}', controls=true)
     p Album: #{song.album.name}
     p Artist: #{song.album.artist.name}
+    .delete
+      form(method='POST', action='/songs/#{song._id}')
+        input(type='hidden', name='_method', value='DELETE')
+        button Delete

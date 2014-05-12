@@ -29,9 +29,12 @@ function load(app, fn){
   app.get('/albums', dbg, albums.index);
   app.post('/albums', dbg, albums.create);
   app.get('/albums/:id', dbg, albums.show);
+  app.delete('/albums/:id', dbg, albums.destroy);
 
   app.get('/songs', dbg, songs.index);
   app.post('/songs', dbg, songs.create);
+  app.get('/songs/filter/:genre', dbg, songs.filter);
+  app.delete('/songs/:id', dbg, songs.destroy);
 
   app.get('/help', dbg, home.help);
   console.log('Routes Loaded');
