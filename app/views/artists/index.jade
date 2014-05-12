@@ -9,5 +9,6 @@ block content
     button Add Artist
 
   each artist in artists
-    h3= artist.name
+    h3
+      a(href='/artists/#{artist._id}')= artist.name
     img(src='/img/#{artist.name}/#{artist.photo.originalFilename}')

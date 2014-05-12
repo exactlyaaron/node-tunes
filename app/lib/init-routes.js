@@ -24,9 +24,18 @@ function load(app, fn){
   app.get('/about', dbg, home.index);
   app.get('/artists', dbg, artists.index);
   app.post('/artists', dbg, artists.create);
+  app.get('/artists/:id', dbg, artists.show);
   app.get('/albums', dbg, albums.index);
   app.post('/albums', dbg, albums.create);
+  app.get('/albums/:id', dbg, albums.show);
+  app.delete('/albums/:id', albums.destroy);
   app.get('/songs', dbg, songs.index);
+  app.post('/songs', dbg, songs.create);
+  app.delete('/songs/:id', songs.destroy);
+  app.get('/songs/filter/:genre', dbg, songs.filter);
+
+
+
   console.log('Routes Loaded');
   fn();
 }

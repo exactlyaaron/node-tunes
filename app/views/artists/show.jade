@@ -1,0 +1,12 @@
+extends ../shared/template
+
+block content
+  h1 Artist
+
+  each artist in artists
+    h3= artist.name
+    img(src='/img/#{artist.name}/#{artist.photo.originalFilename}')
+
+  each album in albums
+    h3= album.name
+    img(src='/img/#{album.name}/#{album.photo.originalFilename}')

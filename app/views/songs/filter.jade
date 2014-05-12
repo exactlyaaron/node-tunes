@@ -1,0 +1,11 @@
+extends ../shared/template
+
+block content
+
+  h1 Node Songs Filtered
+  
+  each song in songs
+    h3= song.name
+    p Album: #{song.album.name}
+    p Artist: #{song.album.artist.name}
+    audio(src='#{song.file}', controls=true)

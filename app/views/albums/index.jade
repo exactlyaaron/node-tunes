@@ -6,17 +6,17 @@ block content
   form(method='POST', action='/albums' enctype='multipart/form-data')
     input(type='text', name='name', placeholder='Name')
     select(name='artistId')
-      Artist
+        option Artist
         each artist in artists
           option(value=artist._id)= artist.name
     input(type='file', name='albumPhoto')
     button Add Album
 
   each album in albums
-    h3= album.name
+    h3
+      a(href='/albums/#{album._id}')= album.name
+    p= album.artist.name
     img(src='/img/#{album.name}/#{album.photo.originalFilename}')
-
-select.priority(name='priorityId')
-          option Priority
-          each priority in priorities
-            option(value=priority._id)= priority.name
+    form(method='POST', action='/albums/#{album._id}')
+          input(type='hidden', name='_method', value='DELETE')
+          button X

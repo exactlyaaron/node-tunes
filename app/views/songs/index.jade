@@ -2,3 +2,26 @@ extends ../shared/template
 
 block content
   h1 Node-Tunes Songs
+  form(method='POST', action='/songs' enctype='multipart/form-data')
+    input(type='text', name='name', placeholder='Name')
+    select(name='albumId')
+      option Album
+      each album in albums
+        option(value=album._id) #{album.name} (#{album.artist.name})
+    input(type='file', name='file')
+    input(type='text', name='genres' placeholder='Genre')
+    button Add Song
+
+  h1 Genres
+  each genre in genres
+    a(href='/songs/filter/#{genre}')
+      p= genre
+
+  each song in songs
+    h3= song.name
+    p Album: #{song.album.name}
+    p Artist: #{song.album.artist.name}
+    audio(src='#{song.file}', controls=true)
+    form(method='POST', action='/songs/#{song._id}')
+          input(type='hidden', name='_method', value='DELETE')
+          button X

@@ -1,0 +1,14 @@
+extends ../shared/template
+
+block content
+  h1 Node-Tunes Albums
+
+
+  each album in albums
+    h3= album.name
+    img(src='/img/#{album.name}/#{album.photo.originalFilename}')
+
+
+  each song in songs
+    h3= artist.name
+    img(src='/audios/#{artist.name}/#{song.songFile.originalFilename}')

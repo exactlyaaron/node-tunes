@@ -22,7 +22,8 @@
     "morgan":          "*",
     "method-override": "*",
     "traceur":         "*",
-    "multiparty":      "*"
+    "multiparty":      "*",
+    "rimraf":          "*"
   },
   "devDependencies": {
     "grunt":                "*",
