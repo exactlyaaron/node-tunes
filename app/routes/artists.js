@@ -13,7 +13,6 @@ var songs = global.nss.db.collection('songs');
 
 exports.index = (req, res)=>{
   artists.find().toArray((err, records)=>{
-    console.log(records);
     res.render('artists/index', {artists: records, title: 'NodeTunes: Artists'});
   });
 };
