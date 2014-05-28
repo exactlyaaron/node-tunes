@@ -37,7 +37,7 @@ exports.index = (req, res)=>{
           });
 
           allGenres = _.uniq(allGenres);
-          
+
 
           res.render('songs/index', {genres: allGenres, artists: artsts, albums: albms, songs: sngs, title: 'Songs'});
         });
@@ -144,7 +144,9 @@ exports.destroy = (req, res)=>{
     rimraf.sync(path);
   });
 
-  songs.findAndRemove({_id: _id}, ()=>res.redirect('/songs'));
+  songs.findAndRemove({_id: _id}, ()=>{
+    res.redirect('/songs');
+  });
 
 };
 

@@ -23,7 +23,8 @@
     "method-override": "*",
     "traceur":         "*",
     "multiparty":      "*",
-    "rimraf":          "*"
+    "rimraf":          "*",
+    "mkdirp":          "*"
   },
   "devDependencies": {
     "grunt":                "*",
